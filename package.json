@@ -6,13 +6,17 @@
   "scripts": {
     "test": ""
   },
-  "repository": "",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/maxmechanic/node-pinboard.git"
+  },
   "keywords": [
     "pinboard"
   ],
   "author": "maxmechanic",
-  "license": "BSD",
+  "license": "MIT",
   "dependencies": {
-    "request": "~2.14.0"
-  }
+    "request": "~2.14.x"
+  },
+  "readmeFilename": "README.md"
 }
