@@ -6,7 +6,7 @@ A Node.js wrapper for the Pinboard API.
 ###Installation
 	npm install node-pinboard
 ##Available functions
-  node-pinboard follows the [Pinboard v1 API](https://pinboard.in/api/) with [token auth](https://pinboard.in/api/#authentication) (token can be found on [settings/password](https://pinboard.in/settings/password)) and can either return the server response the result of a function or via callback.
+  node-pinboard follows the [Pinboard v1 API](https://pinboard.in/api/) with [token auth](https://pinboard.in/api/#authentication) (token can be found on [settings/password](https://pinboard.in/settings/password)) and can either return the server response as the result of a function or the response can be handled via callback.
   
 ###Examples
   Most options follow those solicited by the API, with the exception of the pluralization of 'tags' in the node-pinboard object where appropriate.
