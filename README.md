@@ -101,9 +101,9 @@ API docs: "Returns a list of the user's most recent posts, filtered by tag."
 
 ####all(options, callback(body))
 
-	options: tag, start, results, fromdt, todt, meta
+options: tag, start, results, fromdt, todt, meta
 
-	API docs: "Returns all bookmarks in the user's account."
+API docs: "Returns all bookmarks in the user's account."
 
 ####suggest(url, callback(body))
 
