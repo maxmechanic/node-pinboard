@@ -8,10 +8,7 @@ function Pinboard(token) {
 	this.token = token;
 }
 
-//add params:
-//url (req), description (title)(req), extended
-//tags, dt (datetime), replace (yes/no), shared (yes/no), toread (yes/no)
-
+// API docs: "Returns the most recent time a bookmark was added, updated or deleted."
 Pinboard.prototype.update = function(cb) {
 	var url = apiURL + 'posts/update';
 	var params = {
@@ -38,6 +35,9 @@ Pinboard.prototype.update = function(cb) {
 
 };
 
+// options: url (req), description (title)(req), extended
+// tags, dt (datetime), replace (yes/no), shared (yes/no), toread (yes/no)
+// API docs: "Add a bookmark."
 Pinboard.prototype.add = function(options, cb) {
 	var url = apiURL + 'posts/add';
 	var params = {
@@ -72,6 +72,7 @@ Pinboard.prototype.add = function(options, cb) {
 
 };
 
+// API docs: "Delete a bookmark."
 Pinboard.prototype.delete = function(delURL, cb) {
 	var url = apiURL + 'posts/delete';
 	var params = {
@@ -100,6 +101,10 @@ Pinboard.prototype.delete = function(delURL, cb) {
 
 };
 
+// options: url (req), description (title)(req), extended
+// tags, dt (datetime), replace (yes/no), shared (yes/no), toread (yes/no)
+// API docs: "Returns one or more posts on a single day matching the arguments. 
+// If no date or url is given, date of most recent bookmark will be used."
 Pinboard.prototype.get = function(options, cb) {
 	var url = apiURL + 'posts/get';
 	var params = {
@@ -131,7 +136,9 @@ Pinboard.prototype.get = function(options, cb) {
 
 };
 
-Pinboard.prototype.dates = function(options, cb) {
+// Filter by up to three tags.
+// API docs: "Returns a list of dates with the number of posts at each date."
+Pinboard.prototype.dates = function(tags, cb) {
 	var url = apiURL + 'posts/dates';
 	var params = {
 		uri: url, 
@@ -139,7 +146,7 @@ Pinboard.prototype.dates = function(options, cb) {
 		qs: {
 			auth_token: this.token,
 			format: 'json',
-			tag: options.tags
+			tag: tags
 		}
 	};
 
@@ -159,7 +166,9 @@ Pinboard.prototype.dates = function(options, cb) {
 
 };
 
-Pinboard.prototype.recent = function(options, cb) {
+// Up to three tags.
+// API docs: "Returns a list of the user's most recent posts, filtered by tag."
+Pinboard.prototype.recent = function(tags, cb) {
 	var url = apiURL + 'posts/recent';
 	var params = {
 		uri: url, 
@@ -167,7 +176,7 @@ Pinboard.prototype.recent = function(options, cb) {
 		qs: {
 			auth_token: this.token,
 			format: 'json',
-			tag: options.tags
+			tag: tags
 		}
 	};
 
@@ -185,6 +194,8 @@ Pinboard.prototype.recent = function(options, cb) {
 	});
 };
 
+// options: tag, start, results, fromdt, todt, meta
+// API docs: "Returns all bookmarks in the user's account."
 Pinboard.prototype.all = function(options, cb) {
 	var url = apiURL + 'posts/all';
 	var params = {
@@ -218,6 +229,8 @@ Pinboard.prototype.all = function(options, cb) {
 
 };
 
+// API docs: "Returns a list of popular tags and recommended tags for a given URL. Popular tags are tags used site-wide for the url; 
+// recommended tags are drawn from the user's own tags."
 Pinboard.prototype.suggest = function(sugURL, cb) {
 	var url = apiURL + 'posts/suggest';
 	var params = {
@@ -243,8 +256,9 @@ Pinboard.prototype.suggest = function(sugURL, cb) {
 		return body;
 	});
 };
-
-Pinboard.prototype.getTags = function(options, cb) {
+ 
+// "Returns a full list of the user's tags along with the number of times they were used."
+Pinboard.prototype.getTags = function(cb) {
 	var url = apiURL + 'tags/get';
 	var params = {
 		uri: url, 
@@ -271,6 +285,7 @@ Pinboard.prototype.getTags = function(options, cb) {
 
 };
 
+// API docs: "Delete an existing tag."
 Pinboard.prototype.delTag = function(tag, cb) {
 	var url = apiURL + 'tags/delete';
 	var params = {
@@ -299,7 +314,8 @@ Pinboard.prototype.delTag = function(tag, cb) {
 
 
 };
-
+// options: old (req), new (req)
+// API docs: "Rename an tag, or fold it in to an existing tag"
 Pinboard.prototype.renameTag = function(options, cb) {
 	var url = apiURL + 'tags/rename';
 
@@ -328,6 +344,7 @@ Pinboard.prototype.renameTag = function(options, cb) {
 	});
 };
 
+// API docs: "Returns the user's secret RSS key (for viewing private feeds)"
 Pinboard.prototype.userSecret = function(cb) {
 	var url = apiURL + 'user/secret';
 
@@ -355,6 +372,7 @@ Pinboard.prototype.userSecret = function(cb) {
 
 };
 
+// API docs: "Returns the user's API token (for making API calls without a password)"
 Pinboard.prototype.api_token = function(cb) {
 	var url = apiURL + 'user/api_token';
 
@@ -383,6 +401,7 @@ Pinboard.prototype.api_token = function(cb) {
 
 };
 
+// API docs: "Returns a list of the user's notes"
 Pinboard.prototype.listNotes = function(cb) {
 	var url = apiURL + 'notes/list';
 
@@ -410,6 +429,8 @@ Pinboard.prototype.listNotes = function(cb) {
 
 };
 
+// API docs: "Returns an individual user note. 
+// The hash property is a 20 character long sha1 hash of the note text."
 Pinboard.prototype.getNote = function(id, cb) {
 	var url = apiURL + 'notes/' + id;
 
