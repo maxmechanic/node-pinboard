@@ -52,89 +52,89 @@ A Node.js wrapper for the Pinboard API.
 - **'options' is a javascript object.**
 - **Callbacks are handed the Pinboard server response bodies.**
 
-[add(options, callback(body))](#addoptions-callbackbody)  
-[delete(url, callback(body))](#deleteurl-callbackbody)  
-[get(options, callback(body))](#getoptions-callbackbody)  
-[dates(options, callback(body))](#datesoptions-callbackbody)  
-[recent(options, callback(body))](#recentoptions-callbackbody)  
-[all(options, callback(body))](#alloptions-callbackbody)  
-[suggest(url, callback(body))](#suggesturl-callbackbody)  
-[getTags(callback(body))](#getTagscallbackbody)  
-[delTag(tag, callback(body))](#delTagtag-callbackbody)  
-[renameTag(options, callback(body))](#renameTagoptions-callbackbody)  
-[userSecret(callback(body))](#userSecretcallbackbody))  
-[api_token(callback(body))](#api_tokencallbackbody)  
-[listNotes(callback(body))](#listNotescallbackbody)  
-[getNote(id, callback(body)](#getNoteid-callbackbody)  
+[add(options, function(body))](#addoptions-functionbody)  
+[delete(url, function(body))](#deleteurl-functionbody)  
+[get(options, function(body))](#getoptions-functionbody)  
+[dates(options, function(body))](#datesoptions-functionbody)  
+[recent(options, function(body))](#recentoptions-functionbody)  
+[all(options, function(body))](#alloptions-functionbody)  
+[suggest(url, function(body))](#suggesturl-functionbody)  
+[getTags(function(body))](#getTagsfunctionbody)  
+[delTag(tag, function(body))](#delTagtag-functionbody)  
+[renameTag(options, function(body))](#renameTagoptions-functionbody)  
+[userSecret(function(body))](#userSecretfunctionbody))  
+[api_token(function(body))](#api_tokenfunctionbody)  
+[listNotes(function(body))](#listNotesfunctionbody)  
+[getNote(id, function(body)](#getNoteid-functionbody)  
 	
-####update(callback(body))
+####update(function(body))
 
 API docs: "Returns a list of the user's most recent posts, filtered by tag."
 
-####add(options, callback(body))
+####add(options, function(body))
 
 options: url (req), description (title)(req), extended tags, dt (datetime), replace (yes/no), shared (yes/no), toread (yes/no)
 
 API docs: "Add a bookmark."
 
-####delete(url, callback(body))
+####delete(url, function(body))
 
 API docs: "Delete a bookmark."
 
-####get(options, callback(body))
+####get(options, function(body))
 
 options: url (req), description (title)(req), extended, tags, dt (datetime), replace (yes/no), shared (yes/no), toread (yes/no)
 
 API docs: "Returns one or more posts on a single day matching the arguments. If no date or url is given, date of most recent bookmark will be used."
 
-####dates(options, callback(body))
+####dates(options, function(body))
 
 options: tags
 
 API docs: "Returns a list of dates with the number of posts at each date."
 
-####recent(options, callback(body))
+####recent(options, function(body))
 
 options: tags
 
 API docs: "Returns a list of the user's most recent posts, filtered by tag."
 
-####all(options, callback(body))
+####all(options, function(body))
 
 options: tag, start, results, fromdt, todt, meta
 
 API docs: "Returns all bookmarks in the user's account."
 
-####suggest(url, callback(body))
+####suggest(url, function(body))
 
 API docs: "Returns a list of popular tags and recommended tags for a given URL. Popular tags are tags used site-wide for the url; recommended tags are drawn from the user's own tags."
 
-####getTags(callback(body))
+####getTags(function(body))
 
 API docs: "Returns a full list of the user's tags along with the number of times they were used."
 
-####delTag(tag, callback(body))
+####delTag(tag, function(body))
 
 API docs: "Delete an existing tag."
 
-####renameTag(options, callback(body))
+####renameTag(options, function(body))
 
 options: old (req), new (req)
 
 API docs: "Rename an tag, or fold it in to an existing tag"
 
-####userSecret(callback(body))
+####userSecret(function(body))
 
 API docs: "Returns the user's secret RSS key (for viewing private feeds)"
 
-####api_token(callback(body))
+####api_token(function(body))
 
 API docs: "Returns the user's API token (for making API calls without a password)"
 
-####listNotes(callback(body))
+####listNotes(function(body))
 
 API docs: "Returns a list of the user's notes"
 
-####getNote(id, callback(body))
+####getNote(id, function(body))
 
 API docs: "Returns an individual user note. The hash property is a 20 character long sha1 hash of the note text."
