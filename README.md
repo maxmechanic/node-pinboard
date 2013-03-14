@@ -44,78 +44,97 @@ A Node.js wrapper for the Pinboard API.
       		//toread: 'yes',
       		//tags: 'git node-pinboard test' } ] }
 	});
+```
 
-###Functions
-  	#### All options are passed as strings. 'options' is a javascript object. Callbacks are handed the Pinboard server response bodies.
+###Functions###
 
-	update(callback(body))
+- **All options are passed as strings.** 
+- **'options' is a javascript object.**
+- **Callbacks are handed the Pinboard server response bodies.**
 
-		API docs: "Returns a list of the user's most recent posts, filtered by tag."
+[add(options, callback(body))](#addoptions-callbackbody)  
+[delete(url, callback(body))](#deleteurl-callbackbody)  
+[get(options, callback(body))](#getoptions-callbackbody)  
+[dates(options, callback(body))](#datesoptions-callbackbody)  
+[recent(options, callback(body))](#recentoptions-callbackbody)  
+[all(options, callback(body))](#alloptions-callbackbody)  
+[suggest(url, callback(body))](#suggesturl-callbackbody)  
+[getTags(callback(body))](#getTagscallbackbody)  
+[delTag(tag, callback(body))](#delTagtag-callbackbody)  
+[renameTag(options, callback(body))](#renameTagoptions-callbackbody)  
+[userSecret(callback(body))](#userSecretcallbackbody))  
+[api_token(callback(body))](#api_tokencallbackbody)  
+[listNotes(callback(body))](#listNotescallbackbody)  
+[getNote(id, callback(body)](#getNoteid-callbackbody)  
+	
+####update(callback(body))
 
-	add(options, callback(body))
+API docs: "Returns a list of the user's most recent posts, filtered by tag."
 
-		options: url (req), description (title)(req), extended tags, dt (datetime), replace (yes/no), shared (yes/no), toread (yes/no)
+####add(options, callback(body))
 
-		API docs: "Add a bookmark."
+options: url (req), description (title)(req), extended tags, dt (datetime), replace (yes/no), shared (yes/no), toread (yes/no)
 
-	delete(url, callback(body))
+API docs: "Add a bookmark."
 
-		API docs: "Delete a bookmark."
+####delete(url, callback(body))
 
-	get(options, callback(body))
+API docs: "Delete a bookmark."
 
-		options: url (req), description (title)(req), extended, tags, dt (datetime), replace (yes/no), shared (yes/no), toread (yes/no)
+####get(options, callback(body))
 
-		API docs: "Returns one or more posts on a single day matching the arguments. If no date or url is given, date of most recent bookmark will be used."
+options: url (req), description (title)(req), extended, tags, dt (datetime), replace (yes/no), shared (yes/no), toread (yes/no)
 
-	dates(options, callback(body))
+API docs: "Returns one or more posts on a single day matching the arguments. If no date or url is given, date of most recent bookmark will be used."
 
-		options: tags
+####dates(options, callback(body))
 
-		API docs: "Returns a list of dates with the number of posts at each date."
+options: tags
 
-	recent(options, callback(body))
+API docs: "Returns a list of dates with the number of posts at each date."
 
-		options: tags
+####recent(options, callback(body))
 
-		API docs: "Returns a list of the user's most recent posts, filtered by tag."
+options: tags
 
-	all(options, callback(body))
+API docs: "Returns a list of the user's most recent posts, filtered by tag."
 
-		options: tag, start, results, fromdt, todt, meta
+####all(options, callback(body))
 
-		API docs: "Returns all bookmarks in the user's account."
+options: tag, start, results, fromdt, todt, meta
 
-	suggest(url, callback(body))
+API docs: "Returns all bookmarks in the user's account."
 
-		API docs: "Returns a list of popular tags and recommended tags for a given URL. Popular tags are tags used site-wide for the url; recommended tags are drawn from the user's own tags."
+####suggest(url, callback(body))
 
-	getTags(callback(body))
+API docs: "Returns a list of popular tags and recommended tags for a given URL. Popular tags are tags used site-wide for the url; recommended tags are drawn from the user's own tags."
 
-		API docs: "Returns a full list of the user's tags along with the number of times they were used."
+####getTags(callback(body))
 
-	delTag(tag, callback(body))
+API docs: "Returns a full list of the user's tags along with the number of times they were used."
 
-		API docs: "Delete an existing tag."
+####delTag(tag, callback(body))
 
-	renameTag(options, callback(body))
+API docs: "Delete an existing tag."
 
-		options: old (req), new (req)
+####renameTag(options, callback(body))
 
-		API docs: "Rename an tag, or fold it in to an existing tag"
+options: old (req), new (req)
 
-	userSecret(callback(body))
+API docs: "Rename an tag, or fold it in to an existing tag"
 
-		API docs: "Returns the user's secret RSS key (for viewing private feeds)"
+####userSecret(callback(body))
 
-	api_token(callback(body))
+API docs: "Returns the user's secret RSS key (for viewing private feeds)"
 
-		API docs: "Returns the user's API token (for making API calls without a password)"
+####api_token(callback(body))
 
-	listNotes(callback(body))
+API docs: "Returns the user's API token (for making API calls without a password)"
 
-		API docs: "Returns a list of the user's notes"
+####listNotes(callback(body))
 
-	getNote(id, callback(body))
+API docs: "Returns a list of the user's notes"
 
-		API docs: "Returns an individual user note. The hash property is a 20 character long sha1 hash of the note text."
+####getNote(id, callback(body))
+
+API docs: "Returns an individual user note. The hash property is a 20 character long sha1 hash of the note text."
