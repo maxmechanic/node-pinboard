@@ -73,7 +73,7 @@ API docs: "Returns a list of the user's most recent posts, filtered by tag."
 
 ####add(options, function(body))
 
-options: url (req), description (title)(req), extended tags, dt (datetime), replace (yes/no), shared (yes/no), toread (yes/no)
+options: url (req), description (title)(req), extended, tags, dt (datetime), replace (yes/no), shared (yes/no), toread (yes/no)
 
 API docs: "Add a bookmark."
 
