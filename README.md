@@ -49,7 +49,7 @@ A Node.js wrapper for the Pinboard API.
 ### Functions ###
 
 - **All options are passed as strings.**
-- **'options' is a javascript object.**
+- **`options` is a javascript object.**
 - **Callbacks are handed the Pinboard server response bodies.**
 
 - [add(options, function(body))](#addoptions-functionbody)
@@ -62,7 +62,7 @@ A Node.js wrapper for the Pinboard API.
 - [getTags(function(body))](#getTagsfunctionbody)
 - [delTag(tag, function(body))](#delTagtag-functionbody)
 - [renameTag(options, function(body))](#renameTagoptions-functionbody)
-- [userSecret(function(body))](#userSecretfunctionbody))
+- [userSecret(function(body))](#userSecretfunctionbody)
 - [api_token(function(body))](#api_tokenfunctionbody)
 - [listNotes(function(body))](#listNotesfunctionbody)
 - [getNote(id, function(body)](#getNoteid-functionbody)
