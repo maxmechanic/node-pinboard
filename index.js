@@ -31,13 +31,12 @@ function pinboardMethod(endpoint, singleOption) {
       if (err){
         return console.error(err);
       }
-
-      if (cb) {
+      else if (cb) {
         cb(body);
         return;
+      } else {
+        return body;
       }
-
-      return body;
     });
   };
 }
