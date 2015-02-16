@@ -3,7 +3,7 @@ var _ = require('lodash');
 
 var apiURL = 'https://api.pinboard.in/v1/';
 
-function pinboardMethod(endpoint, availableOpts, singleOption) {
+function pinboardMethod(endpoint, singleOption) {
   return function(opts, cb) {
     var url = apiURL + endpoint;
 
@@ -55,7 +55,7 @@ Pinboard.prototype.update = pinboardMethod('posts/update');
 Pinboard.prototype.add = pinboardMethod('posts/add');
 
 // API docs: "Delete a bookmark."
-Pinboard.prototype.delete = pinboardMethod('posts/delete', [], 'url');
+Pinboard.prototype.delete = pinboardMethod('posts/delete', 'url');
 
 // options: url (req), description (title)(req), extended
 // tags, dt (datetime), replace (yes/no), shared (yes/no), toread (yes/no)
@@ -77,13 +77,13 @@ Pinboard.prototype.all = pinboardMethod('posts/all');
 
 // API docs: "Returns a list of popular tags and recommended tags for a given URL. Popular tags are tags used site-wide for the url;
 // recommended tags are drawn from the user's own tags."
-Pinboard.prototype.suggest = pinboardMethod('posts/suggest', [], 'url');
+Pinboard.prototype.suggest = pinboardMethod('posts/suggest', 'url');
 
 // "Returns a full list of the user's tags along with the number of times they were used."
 Pinboard.prototype.getTags = pinboardMethod('tags/get');
 
 // API docs: "Delete an existing tag."
-Pinboard.prototype.delTag = pinboardMethod('tags/delete', [], 'tag');
+Pinboard.prototype.delTag = pinboardMethod('tags/delete', 'tag');
 
 // options: old (req), new (req)
 // API docs: "Rename an tag, or fold it in to an existing tag"
