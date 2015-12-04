@@ -1,5 +1,4 @@
 var request = require ('request');
-var _ = require('lodash');
 
 var apiURL = 'https://api.pinboard.in/v1/';
 
@@ -12,7 +11,7 @@ function pinboardMethod(endpoint, singleOption) {
       optsObj[singleOption] = opts;
       opts = optsObj;
     }
-    else if (!cb && _.isFunction(opts)) {
+    else if (!cb && (typeof opts === 'function')) {
       cb = opts;
       opts = {};
     }
@@ -20,7 +19,7 @@ function pinboardMethod(endpoint, singleOption) {
       opts.tag = opts.tags;
     }
 
-    var qs = _.merge({auth_token: this.token, format: 'json'}, opts);
+    var qs = Object.assign({}, {auth_token: this.token, format: 'json'}, opts);
     var params = {
       uri: url,
       json: true,
