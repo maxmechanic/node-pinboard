@@ -28,13 +28,9 @@ function pinboardMethod(endpoint, singleOption) {
 
     request.get(params, function(err, res, body) {
       if (err){
-        return console.error(err);
-      }
-      else if (cb) {
-        cb(body);
-        return;
+        cb(err);
       } else {
-        return body;
+        cb(null, body);
       }
     });
   };
