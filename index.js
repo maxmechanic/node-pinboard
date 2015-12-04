@@ -1,10 +1,10 @@
 var request = require ('request');
 
-var apiURL = 'https://api.pinboard.in/v1/';
+var API_URL = 'https://api.pinboard.in/v1/';
 
 function pinboardMethod(endpoint, singleOption) {
   return function(opts, cb) {
-    var url = apiURL + endpoint;
+    var url = API_URL + endpoint;
 
     if (singleOption) {
       var optsObj = {};
