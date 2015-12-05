@@ -94,7 +94,7 @@ Pinboard.prototype.listNotes = pinboardMethod('notes/list');
 Pinboard.prototype.getNote = function(id, cb) {
   var url = 'notes/' + id;
 
-  return pinboardMethod(url).bind(this)({}, cb);
+  pinboardMethod(url).call(this, cb);
 };
 
 module.exports = Pinboard;
