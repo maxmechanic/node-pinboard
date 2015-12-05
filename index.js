@@ -7,13 +7,10 @@ function pinboardMethod(endpoint, singleOption) {
     var url = API_URL + endpoint;
 
     if (singleOption) {
-      var optsObj = {};
-      optsObj[singleOption] = opts;
-      opts = optsObj;
+      opts = {[singleOption]: opts};
     }
     else if (!cb && (typeof opts === 'function')) {
       cb = opts;
-      opts = {};
     }
     else if (opts.tags) {
       opts.tag = opts.tags;
@@ -23,7 +20,7 @@ function pinboardMethod(endpoint, singleOption) {
     var params = {
       uri: url,
       json: true,
-      qs: qs
+      qs
     };
 
     request.get(params, function(err, res, body) {
