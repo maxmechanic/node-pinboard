@@ -28,15 +28,15 @@ function pinboardMethod(endpoint, singleOption) {
     };
 
     request.get(params, function(err, res, body) {
-      if (err){
+      if (cb) {
+        return cb(err, body);
+      }
+      
+      if (err) {
         return console.error(err);
       }
-      else if (cb) {
-        cb(body);
-        return;
-      } else {
-        return body;
-      }
+      
+      return body;
     });
   };
 }
