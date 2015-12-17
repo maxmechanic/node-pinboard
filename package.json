@@ -1,6 +1,6 @@
 {
   "name": "node-pinboard",
-  "version": "0.1.1",
+  "version": "1.0.0",
   "description": "A Node.js wrapper for the Pinboard API.",
   "main": "index.js",
   "scripts": {
@@ -18,5 +18,8 @@
   "dependencies": {
     "request": "^2.53.0"
   },
-  "readmeFilename": "README.md"
+  "readmeFilename": "README.md",
+  "engines": {
+    "node": ">= 4.0"
+  }
 }
