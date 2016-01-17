@@ -1,41 +1,33 @@
 var request = require ('request');
-var _ = require('lodash');
 
-var apiURL = 'https://api.pinboard.in/v1/';
+var API_URL = 'https://api.pinboard.in/v1/';
 
 function pinboardMethod(endpoint, singleOption) {
   return function(opts, cb) {
-    var url = apiURL + endpoint;
+    var url = API_URL + endpoint;
 
     if (singleOption) {
-      var optsObj = {};
-      optsObj[singleOption] = opts;
-      opts = optsObj;
+      opts = {[singleOption]: opts};
     }
-    else if (!cb && _.isFunction(opts)) {
+    else if (!cb && (typeof opts === 'function')) {
       cb = opts;
-      opts = {};
     }
     else if (opts.tags) {
       opts.tag = opts.tags;
     }
 
-    var qs = _.merge({auth_token: this.token, format: 'json'}, opts);
+    var qs = Object.assign({}, {auth_token: this.token, format: 'json'}, opts);
     var params = {
       uri: url,
       json: true,
-      qs: qs
+      qs
     };
 
     request.get(params, function(err, res, body) {
       if (err){
-        return console.error(err);
-      }
-      else if (cb) {
-        cb(body);
-        return;
+        cb(err);
       } else {
-        return body;
+        cb(null, body);
       }
     });
   };
@@ -102,7 +94,7 @@ Pinboard.prototype.listNotes = pinboardMethod('notes/list');
 Pinboard.prototype.getNote = function(id, cb) {
   var url = 'notes/' + id;
 
-  return pinboardMethod(url).bind(this)({}, cb);
+  pinboardMethod(url).call(this, cb);
 };
 
 module.exports = Pinboard;
