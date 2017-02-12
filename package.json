@@ -4,7 +4,8 @@
   "description": "A Node.js wrapper for the Pinboard API.",
   "main": "index.js",
   "scripts": {
-    "test": ""
+    "test": "mocha ./test",
+    "coverage": "nyc npm test"
   },
   "repository": {
     "type": "git",
@@ -21,5 +22,11 @@
   "readmeFilename": "README.md",
   "engines": {
     "node": ">= 4.0"
+  },
+  "devDependencies": {
+    "chai": "3.5.0",
+    "mocha": "3.2.0",
+    "nyc": "10.1.2",
+    "sinon": "1.17.7"
   }
 }
