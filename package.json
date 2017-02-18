@@ -4,6 +4,7 @@
   "description": "A Node.js wrapper for the Pinboard API.",
   "main": "index.js",
   "scripts": {
+    "lint": "eslint .",
     "test": ""
   },
   "repository": {
