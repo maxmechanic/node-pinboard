@@ -1,30 +1,30 @@
-var request = require ('request');
+const request = require('request');
 
-var API_URL = 'https://api.pinboard.in/v1/';
+const API_URL = 'https://api.pinboard.in/v1/';
 
 function pinboardMethod(endpoint, singleOption) {
-  return function(opts, cb) {
-    var url = API_URL + endpoint;
+  return (options, callback) => {
+    let opts = options;
+    let cb = callback;
+    const url = API_URL + endpoint;
 
     if (singleOption) {
-      opts = {[singleOption]: opts};
-    }
-    else if (!cb && (typeof opts === 'function')) {
+      opts = { [singleOption]: opts };
+    } else if (!cb && (typeof opts === 'function')) {
       cb = opts;
-    }
-    else if (opts.tags) {
+    } else if (opts.tags) {
       opts.tag = opts.tags;
     }
 
-    var qs = Object.assign({}, {auth_token: this.token, format: 'json'}, opts);
-    var params = {
+    const qs = Object.assign({}, { auth_token: this.token, format: 'json' }, opts);
+    const params = {
       uri: url,
       json: true,
-      qs
+      qs,
     };
 
-    request.get(params, function(err, res, body) {
-      if (err){
+    request.get(params, (err, res, body) => {
+      if (err) {
         cb(err);
       } else {
         cb(null, body);
@@ -66,7 +66,8 @@ Pinboard.prototype.recent = pinboardMethod('posts/recent');
 // API docs: "Returns all bookmarks in the user's account."
 Pinboard.prototype.all = pinboardMethod('posts/all');
 
-// API docs: "Returns a list of popular tags and recommended tags for a given URL. Popular tags are tags used site-wide for the url;
+// API docs: "Returns a list of popular tags and recommended tags for a given URL.
+// Popular tags are tags used site-wide for the url;
 // recommended tags are drawn from the user's own tags."
 Pinboard.prototype.suggest = pinboardMethod('posts/suggest', 'url');
 
@@ -91,8 +92,8 @@ Pinboard.prototype.listNotes = pinboardMethod('notes/list');
 
 // API docs: "Returns an individual user note.
 // The hash property is a 20 character long sha1 hash of the note text."
-Pinboard.prototype.getNote = function(id, cb) {
-  var url = 'notes/' + id;
+Pinboard.prototype.getNote = (id, cb) => {
+  const url = `notes/${id}`;
 
   pinboardMethod(url).call(this, cb);
 };
