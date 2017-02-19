@@ -4,8 +4,8 @@ const API_URL = 'https://api.pinboard.in/v1/';
 
 function pinboardMethod(endpoint, singleOption) {
   return (options, callback) => {
-    let opts = options;
-    let cb = callback;
+    var opts = options;
+    var cb = callback;
     const url = API_URL + endpoint;
 
     if (singleOption) {
