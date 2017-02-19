@@ -1,15 +1,17 @@
+/* eslint-disable no-unused-expressions */
 
-var request = require('request');
-var sinon = require('sinon');
-var expect = require('chai').expect;
+const request = require('request');
+const sinon = require('sinon');
+const expect = require('chai').expect;
 
-var Pinboard = require('../index.js');
-var MOCK_API_TOKEN = 'user:NNNNNN';
-var API_RESPONSE_FIXTURE = {
-  data: {}
+const Pinboard = require('../index.js');
+
+const MOCK_API_TOKEN = 'user:NNNNNN';
+const API_RESPONSE_FIXTURE = {
+  data: {},
 };
 
-describe('Pinboard', function() {
+describe('Pinboard', () => {
   var sandbox;
   var pinboardInstance;
 
@@ -17,38 +19,38 @@ describe('Pinboard', function() {
     callback(null, 'RESPONSE', API_RESPONSE_FIXTURE);
   }
 
-  beforeEach(function() {
-    pinboardInstance = new Pinboard(MOCK_API_TOKEN)
+  beforeEach(() => {
+    pinboardInstance = new Pinboard(MOCK_API_TOKEN);
     sandbox = sinon.sandbox.create();
     sandbox.stub(request, 'get', requestGetStub);
   });
 
-  afterEach(function() {
+  afterEach(() => {
     sandbox.restore();
   });
 
-  Object.keys(Pinboard.prototype).forEach(function (methodUnderTest) {
-    describe('#' + methodUnderTest + '()', function() {
-      it('should be a function', function() {
+  Object.keys(Pinboard.prototype).forEach((methodUnderTest) => {
+    describe(`#${methodUnderTest}()`, () => {
+      it('should be a function', () => {
         expect(pinboardInstance[methodUnderTest]).to.be.a('function');
       });
 
-      it('should throw error without options argument', function() {
+      it('should throw error without options argument', () => {
         expect(pinboardInstance[methodUnderTest]).to.throw(Error);
       });
 
-      it('should throw error without callback argument', function() {
+      it('should throw error without callback argument', () => {
         expect(pinboardInstance[methodUnderTest].bind(pinboardInstance, {})).to.throw(Error);
       });
 
-      it('should invoke callback', function() {
-        var callback = sinon.spy();
+      it('should invoke callback', () => {
+        const callback = sinon.spy();
         pinboardInstance[methodUnderTest]({}, callback);
         expect(callback.called).to.be.true;
       });
 
-      it('should pass response data as an argument to the supplied callback', function() {
-        var callback = sinon.spy();
+      it('should pass response data as an argument to the supplied callback', () => {
+        const callback = sinon.spy();
         pinboardInstance[methodUnderTest]({}, callback);
         expect(callback.firstCall.args[1]).to.deep.equal(API_RESPONSE_FIXTURE);
       });
