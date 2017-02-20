@@ -1,5 +1,7 @@
-node-pinboard
-=============
+# node-pinboard 
+
+[![npm package](https://img.shields.io/npm/v/node-pinboard.svg?style=flat-square)](https://www.npmjs.org/package/node-pinboard)
+[![Build Status](https://travis-ci.org/maxmechanic/node-pinboard.svg?branch=master)](https://travis-ci.org/maxmechanic/node-pinboard)
 
 A Node.js wrapper for the Pinboard API.
 
