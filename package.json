@@ -2,12 +2,15 @@
   "name": "node-pinboard",
   "version": "1.0.0",
   "description": "A Node.js wrapper for the Pinboard API.",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
-    "lint": "eslint .",
-    "pretest": "npm run lint",
+    "lint": "eslint ./lib/**/*.ts",
+    "pretest": "npm run compile",
     "test": "mocha ./test",
-    "coverage": "nyc npm test"
+    "coverage": "nyc npm test",
+    "precompile": "rimraf ./dist/",
+    "compile": "tsc",
+    "compile-watch": "tsc -w"
   },
   "repository": {
     "type": "git",
