@@ -10,7 +10,8 @@
     "coverage": "nyc npm test",
     "precompile": "rimraf ./dist/",
     "compile": "tsc",
-    "compile-watch": "tsc -w"
+    "compile-watch": "tsc -w",
+    "prettier": "prettier {lib,test}/{,**}/*.{js,ts} --write"
   },
   "repository": {
     "type": "git",
