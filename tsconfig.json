@@ -1,19 +1,22 @@
 {
   "compilerOptions": {
-    "removeComments": false,
-    "preserveConstEnums": true,
-    "sourceMap": true,
     "declaration": true,
+    "importHelpers": true,
+    "lib": ["es5", "es6"],
+    "module": "commonjs",
+    "moduleResolution": "node",
     "noImplicitAny": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "target": "ES2015",
-    "types": ["node"],
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "outDir": "dist/",
-    "lib": ["es5", "es6"]
+    "preserveConstEnums": true,
+    "removeComments": false,
+    "sourceMap": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "target": "es5",
+    "types": ["node"]
   },
   "files": ["lib/index.ts"],
   "exclude": ["node_modules", "dist"]
