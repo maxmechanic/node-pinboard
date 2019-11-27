@@ -8,7 +8,7 @@ const { default: Pinboard } = require('../dist/index.js');
 
 const MOCK_API_TOKEN = 'user:NNNNNN';
 const API_RESPONSE_FIXTURE = {
-  data: {},
+  data: {}
 };
 
 const sandbox = sinon.createSandbox();
@@ -17,43 +17,225 @@ describe('Pinboard', () => {
   let pinboardInstance;
 
   function requestGetStub(_, callback) {
-    callback(null, API_RESPONSE_FIXTURE);
+    return callback(null, API_RESPONSE_FIXTURE);
   }
 
-  beforeEach(() => {
-    pinboardInstance = new Pinboard(MOCK_API_TOKEN);
-    sandbox.stub(get, 'default').callsFake(requestGetStub);
-  });
-
-  afterEach(() => {
-    sandbox.restore();
-  });
+  function requestGetPromiseStub(_) {
+    return Promise.resolve(API_RESPONSE_FIXTURE);
+  }
 
   const p = new Pinboard('');
-  const methodKeys = Object.keys(p).filter(k => typeof p[k] === 'function');
+  const methodKeys = Object.keys(p).filter(k => {
+    return typeof p[k] === 'function';
+  });
 
-  methodKeys.forEach(methodUnderTest => {
-    describe(`#${methodUnderTest}()`, () => {
-      it('should throw error without options argument', () => {
-        expect(pinboardInstance[methodUnderTest]).to.throw(Error);
+  describe('callbacks', () => {
+    beforeEach(() => {
+      pinboardInstance = new Pinboard(MOCK_API_TOKEN);
+      sandbox.stub(get, 'default').callsFake(requestGetStub);
+    });
+
+    afterEach(() => {
+      sandbox.restore();
+    });
+
+    methodKeys.forEach(methodUnderTest => {
+      describe(`#${methodUnderTest}()`, () => {
+        it('should invoke callback', () => {
+          const callback = sinon.spy();
+          pinboardInstance[methodUnderTest]({}, callback);
+          expect(callback.called).to.be.true;
+        });
+
+        it('should pass response data as an argument to the supplied callback', () => {
+          const callback = sinon.spy();
+          pinboardInstance[methodUnderTest]({}, callback);
+          expect(callback.firstCall.args[1]).to.deep.equal(
+            API_RESPONSE_FIXTURE
+          );
+        });
       });
+    });
 
-      it('should throw error without callback argument', () => {
-        expect(
-          pinboardInstance[methodUnderTest].bind(pinboardInstance, {})
-        ).to.throw(Error);
-      });
+    // methods that don't use pinboardMethod helper
 
+    describe(`#delete()`, () => {
       it('should invoke callback', () => {
         const callback = sinon.spy();
-        pinboardInstance[methodUnderTest]({}, callback);
+        pinboardInstance.delete('url', callback);
         expect(callback.called).to.be.true;
       });
 
       it('should pass response data as an argument to the supplied callback', () => {
         const callback = sinon.spy();
-        pinboardInstance[methodUnderTest]({}, callback);
+        pinboardInstance.delete('url', callback);
         expect(callback.firstCall.args[1]).to.deep.equal(API_RESPONSE_FIXTURE);
+      });
+    });
+
+    describe(`#suggest()`, () => {
+      it('should invoke callback', () => {
+        const callback = sinon.spy();
+        pinboardInstance.suggest('url', callback);
+        expect(callback.called).to.be.true;
+      });
+
+      it('should pass response data as an argument to the supplied callback', () => {
+        const callback = sinon.spy();
+        pinboardInstance.suggest('url', callback);
+        expect(callback.firstCall.args[1]).to.deep.equal(API_RESPONSE_FIXTURE);
+      });
+    });
+
+    describe(`#delTag()`, () => {
+      it('should invoke callback', () => {
+        const callback = sinon.spy();
+        pinboardInstance.delTag('tag', callback);
+        expect(callback.called).to.be.true;
+      });
+
+      it('should pass response data as an argument to the supplied callback', () => {
+        const callback = sinon.spy();
+        pinboardInstance.delTag('tag', callback);
+        expect(callback.firstCall.args[1]).to.deep.equal(API_RESPONSE_FIXTURE);
+      });
+    });
+
+    describe(`#listNotes()`, () => {
+      it('should invoke callback', () => {
+        const callback = sinon.spy();
+        pinboardInstance.listNotes(callback);
+        expect(callback.called).to.be.true;
+      });
+
+      it('should pass response data as an argument to the supplied callback', () => {
+        const callback = sinon.spy();
+        pinboardInstance.listNotes(callback);
+        expect(callback.firstCall.args[1]).to.deep.equal(API_RESPONSE_FIXTURE);
+      });
+    });
+
+    describe(`#getNote()`, () => {
+      it('should invoke callback', () => {
+        const callback = sinon.spy();
+        pinboardInstance.getNote('id', callback);
+        expect(callback.called).to.be.true;
+      });
+
+      it('should pass response data as an argument to the supplied callback', () => {
+        const callback = sinon.spy();
+        pinboardInstance.getNote('id', callback);
+        expect(callback.firstCall.args[1]).to.deep.equal(API_RESPONSE_FIXTURE);
+      });
+    });
+  });
+
+  describe('promises', () => {
+    beforeEach(() => {
+      pinboardInstance = new Pinboard(MOCK_API_TOKEN);
+      sandbox.stub(get, 'default').callsFake(requestGetPromiseStub);
+    });
+
+    afterEach(() => {
+      sandbox.restore();
+    });
+
+    methodKeys.forEach(methodUnderTest => {
+      describe(`#${methodUnderTest}()`, () => {
+        it('should invoke then', done => {
+          pinboardInstance[methodUnderTest]({}).then(() => {
+            done();
+          });
+        });
+
+        it('should pass response data as an argument to the supplied callback', done => {
+          pinboardInstance[methodUnderTest]({}).then(result => {
+            expect(result).to.deep.equal(API_RESPONSE_FIXTURE);
+            done();
+          });
+        });
+      });
+    });
+
+    // methods that don't use pinboardMethod helper
+
+    describe(`#delete()`, () => {
+      it('should invoke then', done => {
+        pinboardInstance
+          .delete('url')
+          .then(() => done())
+          .catch(done);
+      });
+
+      it('should pass response data as an argument to the supplied callback', done => {
+        pinboardInstance.delete('url').then(result => {
+          expect(result).to.deep.equal(API_RESPONSE_FIXTURE);
+          done();
+        });
+      });
+    });
+
+    describe(`#suggest()`, () => {
+      it('should invoke then', done => {
+        pinboardInstance
+          .suggest('url')
+          .then(() => done())
+          .catch(done);
+      });
+
+      it('should pass response data as an argument to the supplied callback', done => {
+        pinboardInstance.suggest('url').then(result => {
+          expect(result).to.deep.equal(API_RESPONSE_FIXTURE);
+          done();
+        });
+      });
+    });
+
+    describe(`#delTag()`, () => {
+      it('should invoke then', done => {
+        pinboardInstance
+          .delTag('tag')
+          .then(() => done())
+          .catch(done);
+      });
+
+      it('should pass response data as an argument to the supplied callback', done => {
+        pinboardInstance.delTag('tag').then(result => {
+          expect(result).to.deep.equal(API_RESPONSE_FIXTURE);
+          done();
+        });
+      });
+    });
+
+    describe(`#listNotes()`, () => {
+      it('should invoke then', done => {
+        pinboardInstance
+          .listNotes()
+          .then(() => done())
+          .catch(done);
+      });
+
+      it('should pass response data as an argument to the supplied callback', done => {
+        pinboardInstance.listNotes().then(result => {
+          expect(result).to.deep.equal(API_RESPONSE_FIXTURE);
+          done();
+        });
+      });
+    });
+
+    describe(`#getNote()`, () => {
+      it('should invoke then', done => {
+        pinboardInstance
+          .getNote('id')
+          .then(() => done())
+          .catch(done);
+      });
+
+      it('should pass response data as an argument to the supplied callback', done => {
+        pinboardInstance.getNote('id').then(result => {
+          expect(result).to.deep.equal(API_RESPONSE_FIXTURE);
+          done();
+        });
       });
     });
   });
