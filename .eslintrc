@@ -1,12 +1,16 @@
 {
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint"],
-  "extends": ["airbnb-base", "prettier"],
+  "extends": [
+    "plugin:@typescript-eslint/recommended",
+    "prettier",
+    "prettier/@typescript-eslint"
+  ],
   "env": {
     "node": true,
     "mocha": true
   },
   "rules": {
-    "no-var": 0
+    "@typescript-eslint/no-parameter-properties": 1
   }
 }
