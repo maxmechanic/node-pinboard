@@ -1,3 +1,12 @@
+# 2.0.0
+
+- TypeScript rewrite
+- Same API now works with promises
+- Use node-fetch instead of request
+  **Breaking Changes**
+- Library no longer mapes `tags` property to `tag` property.
+- New minimum version of Node 6+
+
 # 1.0.0
 
 - Callback now conforms to the Node standard of `function(error, response)`
