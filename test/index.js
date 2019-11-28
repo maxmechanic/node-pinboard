@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-expressions */
 
-const get = require('../dist/get');
+const getModule = require('../dist/get');
+const nock = require('nock');
 const sinon = require('sinon');
 const { expect } = require('chai');
 
@@ -12,6 +13,68 @@ const API_RESPONSE_FIXTURE = {
 };
 
 const sandbox = sinon.createSandbox();
+
+describe('Get', () => {
+  beforeEach(() => {});
+
+  afterEach(() => {
+    sandbox.restore();
+  });
+
+  after(() => {
+    nock.restore();
+  });
+
+  it('should return a promise', done => {
+    nock(getModule.API_URL)
+      .get('/foo?')
+      .reply(200, {});
+    getModule.default({ endpoint: 'foo?' }).then(() => {
+      done();
+    });
+  });
+
+  it('should pass the response JSON in a promise', done => {
+    const payload = { foo: 'bar' };
+    nock(getModule.API_URL)
+      .get('/foo?')
+      .reply(200, payload);
+    getModule.default({ endpoint: 'foo' }).then(result => {
+      expect(result).to.deep.equal(payload);
+      done();
+    });
+  });
+
+  it('should call a callback if one is passed in', done => {
+    nock(getModule.API_URL)
+      .get('/foo?')
+      .reply(200, {});
+    getModule.default({ endpoint: 'foo' }, () => {
+      done();
+    });
+  });
+
+  it('should pass the response JSON in a callback', done => {
+    const payload = { foo: 'bar' };
+    nock(getModule.API_URL)
+      .get('/foo?')
+      .reply(200, payload);
+    getModule.default({ endpoint: 'foo' }, (_err, result) => {
+      expect(result).to.deep.equal(payload);
+      done();
+    });
+  });
+
+  it('should pass the error JSON in a callback', () => {
+    nock(getModule.API_URL)
+      .get('/foo?')
+      .reply(500, {});
+    getModule.default({ endpoint: 'foo' }, (err, _result) => {
+      expect(err).to.be.truthy();
+      done();
+    });
+  });
+});
 
 describe('Pinboard', () => {
   let pinboardInstance;
@@ -32,7 +95,7 @@ describe('Pinboard', () => {
   describe('callbacks', () => {
     beforeEach(() => {
       pinboardInstance = new Pinboard(MOCK_API_TOKEN);
-      sandbox.stub(get, 'default').callsFake(requestGetStub);
+      sandbox.stub(getModule, 'default').callsFake(requestGetStub);
     });
 
     afterEach(() => {
@@ -133,7 +196,7 @@ describe('Pinboard', () => {
   describe('promises', () => {
     beforeEach(() => {
       pinboardInstance = new Pinboard(MOCK_API_TOKEN);
-      sandbox.stub(get, 'default').callsFake(requestGetPromiseStub);
+      sandbox.stub(getModule, 'default').callsFake(requestGetPromiseStub);
     });
 
     afterEach(() => {

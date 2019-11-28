@@ -3,7 +3,7 @@ import { stringify as buildQS } from 'querystring';
 
 import { Callback } from './types';
 
-const API_URL = 'https://api.pinboard.in/v1';
+export const API_URL = 'https://api.pinboard.in/v1';
 
 interface Props {
   endpoint: string;
