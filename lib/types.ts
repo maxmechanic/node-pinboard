@@ -59,6 +59,4 @@ export interface RequestParams {
   'user/api_token': {};
 
   'notes/list': {};
-
-  [propName: string]: {};
 }

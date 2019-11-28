@@ -1,12 +1,12 @@
 import fetch from 'node-fetch';
 import { stringify as buildQS } from 'querystring';
 
-import { Callback, RequestParams } from './types';
+import { Callback } from './types';
 
 const API_URL = 'https://api.pinboard.in/v1';
 
 interface Props {
-  endpoint: keyof RequestParams;
+  endpoint: string;
   qs: { [propName: string]: any };
 }
 type Get = (props: Props, cb: Callback) => Promise<object | void>;

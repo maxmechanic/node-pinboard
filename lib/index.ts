@@ -109,8 +109,13 @@ export default class Pinboard {
    * Returns an individual user note. The hash property is a 20 character long sha1 hash of the note text.
    */
   public getNote(id: string, cb: Callback) {
-    const url = `notes/${id}`;
+    const endpoint = `notes/${id}`;
 
-    return pinboardMethod(url, this.token)({}, cb);
+    const params = {
+      endpoint,
+      qs: { auth_token: this.token, format: 'json' }
+    };
+
+    return get(params, cb);
   }
 }
