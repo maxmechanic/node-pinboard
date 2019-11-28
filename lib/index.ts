@@ -23,6 +23,9 @@ function pinboardMethod<T extends keyof RequestParams>(
 }
 
 export default class Pinboard {
+  /**
+   * Uses token available on [settings/password](https://pinboard.in/settings/password)
+   */
   public constructor(readonly token: string) {}
 
   /**
