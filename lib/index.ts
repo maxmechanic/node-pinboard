@@ -116,6 +116,7 @@ export default class Pinboard {
 
     const params = {
       endpoint,
+      // eslint-disable-next-line @typescript-eslint/camelcase
       qs: { auth_token: this.token, format: 'json' }
     };
 
