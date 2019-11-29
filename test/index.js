@@ -15,7 +15,9 @@ const API_RESPONSE_FIXTURE = {
 const sandbox = sinon.createSandbox();
 
 describe('Get', () => {
-  beforeEach(() => {});
+  before(() => {
+    nock.disableNetConnect();
+  });
 
   afterEach(() => {
     sandbox.restore();
@@ -29,6 +31,7 @@ describe('Get', () => {
     nock(getModule.API_URL)
       .get('/foo?')
       .reply(200, {});
+
     getModule.default({ endpoint: 'foo?' }).then(() => {
       done();
     });
@@ -39,6 +42,7 @@ describe('Get', () => {
     nock(getModule.API_URL)
       .get('/foo?')
       .reply(200, payload);
+
     getModule.default({ endpoint: 'foo' }).then(result => {
       expect(result).to.deep.equal(payload);
       done();
@@ -49,6 +53,7 @@ describe('Get', () => {
     nock(getModule.API_URL)
       .get('/foo?')
       .reply(200, {});
+
     getModule.default({ endpoint: 'foo' }, () => {
       done();
     });
@@ -59,18 +64,18 @@ describe('Get', () => {
     nock(getModule.API_URL)
       .get('/foo?')
       .reply(200, payload);
-    getModule.default({ endpoint: 'foo' }, (_err, result) => {
+
+    getModule.default({ endpoint: 'foo' }, (err, result) => {
+      expect(err).to.be.null;
       expect(result).to.deep.equal(payload);
       done();
     });
   });
 
-  it('should pass the error JSON in a callback', () => {
-    nock(getModule.API_URL)
-      .get('/foo?')
-      .reply(500, {});
-    getModule.default({ endpoint: 'foo' }, (err, _result) => {
-      expect(err).to.be.truthy();
+  it('should pass the error JSON in a callback', done => {
+    getModule.default({ endpoint: 'foo' }, (err, result) => {
+      expect(err).to.exist;
+      expect(result).to.be.null;
       done();
     });
   });
