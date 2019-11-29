@@ -5,7 +5,7 @@
 - Use node-fetch instead of request
   **Breaking Changes**
 - Library no longer mapes `tags` property to `tag` property.
-- New minimum version of Node 6+
+- New minimum version of Node 8+
 
 # 1.0.0
 
