@@ -24,7 +24,7 @@
   "author": "maxmechanic",
   "license": "MIT",
   "dependencies": {
-    "node-fetch": "^2.3.0"
+    "node-fetch": "^2.6.0"
   },
   "readmeFilename": "README.md",
   "engines": {
@@ -32,22 +32,22 @@
   },
   "devDependencies": {
     "@istanbuljs/nyc-config-typescript": "^0.1.3",
-    "@types/node": "^11.13.4",
-    "@types/node-fetch": "^2.3.2",
-    "@typescript-eslint/eslint-plugin": "^1.6.0",
-    "@typescript-eslint/parser": "^1.6.0",
+    "@types/node": "^12.12.14",
+    "@types/node-fetch": "^2.5",
+    "@typescript-eslint/eslint-plugin": "^2.9.0",
+    "@typescript-eslint/parser": "^2.9.0",
     "chai": "^4.2.0",
-    "eslint": "^5.16.0",
-    "eslint-config-prettier": "^4.1.0",
+    "eslint": "^6.7.1",
+    "eslint-config-prettier": "^6.7.0",
     "mocha": "^6.2.2",
     "nock": "^11.7.0",
     "nyc": "^14.1.1",
-    "prettier": "^1.17.0",
-    "rimraf": "^2.6.3",
-    "sinon": "^7.3.1",
+    "prettier": "^1.19.1",
+    "rimraf": "^3.0.0",
+    "sinon": "^7.5.0",
     "source-map-support": "^0.5.16",
     "ts-node": "^8.5.4",
     "typedoc": "^0.15.3",
-    "typescript": "^3.4.3"
+    "typescript": "^3.7.2"
   }
 }
