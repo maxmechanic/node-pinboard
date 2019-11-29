@@ -11,7 +11,8 @@
     "precompile": "rimraf ./dist/",
     "compile": "tsc",
     "compile-watch": "tsc -w",
-    "prettier": "prettier {lib,test}/{,**}/*.{js,ts} --write"
+    "prettier": "prettier {lib,test}/{,**}/*.{js,ts} --write",
+    "docs": "typedoc --out docs --excludeNotExported --excludeExternals"
   },
   "repository": {
     "type": "git",
