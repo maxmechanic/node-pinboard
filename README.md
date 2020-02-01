@@ -13,6 +13,10 @@ A Node.js wrapper for the Pinboard API.
 
 node-pinboard follows the [Pinboard v1 API](https://pinboard.in/api/) with [token auth](https://pinboard.in/api/#authentication) (token can be found on [settings/password](https://pinboard.in/settings/password)).
 
+### Errors
+
+Under the hood, node-pinboard uses node-fetch, so API call errors will follow that library's patterns.
+
 ### Tests
 
     npm test
@@ -30,9 +34,9 @@ const api_token = 'user:NNNNNN';
 const pinboard = new Pinboard(api_token);
 
 const options = {
-  url: 'https://github.com/mikeal/request',
-  description: ' mikeal / request',
-  tags: 'git,node-pinboard,test',
+  url: 'https://github.com/maxmechanic/node-pinboard',
+  description: 'node pinboard',
+  tags: 'github,node-pinboard,test',
   toread: 'yes'
 };
 
@@ -46,8 +50,8 @@ pinboard.get({ tag: 'node-pinboard' }, (err, res) => {
   //date: date,
   //user: 'user',
   //posts:
-  //[ { href: 'https://github.com/mikeal/request',
-  //description: 'mikeal / request',
+  //[ { href: 'https://github.com/maxmechanic/node-pinboard',
+  //description: 'node pinboard',
   //extended: '',
   //meta: 'meta',
   //hash: 'hash',
