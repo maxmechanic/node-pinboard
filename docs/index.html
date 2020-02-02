@@ -74,6 +74,10 @@
 					<h3>Available functions</h3>
 				</a>
 				<p>node-pinboard follows the <a href="https://pinboard.in/api/">Pinboard v1 API</a> with <a href="https://pinboard.in/api/#authentication">token auth</a> (token can be found on <a href="https://pinboard.in/settings/password">settings/password</a>).</p>
+				<a href="#errors" id="errors" style="color: inherit; text-decoration: none;">
+					<h3>Errors</h3>
+				</a>
+				<p>Under the hood, node-pinboard uses node-fetch, so API call errors will follow that library&#39;s patterns.</p>
 				<a href="#tests" id="tests" style="color: inherit; text-decoration: none;">
 					<h3>Tests</h3>
 				</a>
@@ -88,9 +92,9 @@
 <span class="hljs-keyword">const</span> pinboard = <span class="hljs-keyword">new</span> Pinboard(api_token);
 
 <span class="hljs-keyword">const</span> options = {
-  <span class="hljs-attr">url</span>: <span class="hljs-string">'https://github.com/mikeal/request'</span>,
-  <span class="hljs-attr">description</span>: <span class="hljs-string">' mikeal / request'</span>,
-  <span class="hljs-attr">tags</span>: <span class="hljs-string">'git,node-pinboard,test'</span>,
+  <span class="hljs-attr">url</span>: <span class="hljs-string">'https://github.com/maxmechanic/node-pinboard'</span>,
+  <span class="hljs-attr">description</span>: <span class="hljs-string">'node pinboard'</span>,
+  <span class="hljs-attr">tags</span>: <span class="hljs-string">'github,node-pinboard,test'</span>,
   <span class="hljs-attr">toread</span>: <span class="hljs-string">'yes'</span>
 };
 
@@ -104,8 +108,8 @@ pinboard.get({ <span class="hljs-attr">tag</span>: <span class="hljs-string">'no
   <span class="hljs-comment">//date: date,</span>
   <span class="hljs-comment">//user: 'user',</span>
   <span class="hljs-comment">//posts:</span>
-  <span class="hljs-comment">//[ { href: 'https://github.com/mikeal/request',</span>
-  <span class="hljs-comment">//description: 'mikeal / request',</span>
+  <span class="hljs-comment">//[ { href: 'https://github.com/maxmechanic/node-pinboard',</span>
+  <span class="hljs-comment">//description: 'node pinboard',</span>
   <span class="hljs-comment">//extended: '',</span>
   <span class="hljs-comment">//meta: 'meta',</span>
   <span class="hljs-comment">//hash: 'hash',</span>
