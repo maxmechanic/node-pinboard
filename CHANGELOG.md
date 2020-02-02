@@ -1,3 +1,8 @@
+# 2.0.1
+
+- Fix Node engine requirement
+- Update docs
+
 # 2.0.0
 
 - TypeScript rewrite
