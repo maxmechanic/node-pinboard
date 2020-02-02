@@ -12,7 +12,8 @@
     "compile": "tsc",
     "compile-watch": "tsc -w",
     "prettier": "prettier {lib,test}/{,**}/*.{js,ts} --write",
-    "docs": "typedoc --out docs --excludeNotExported --excludeExternals"
+    "docs": "typedoc --out docs --excludeNotExported --excludeExternals",
+    "prepare": "npm run lint && npm test && npm run docs && npm run compile"
   },
   "repository": {
     "type": "git",
