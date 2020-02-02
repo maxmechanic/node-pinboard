@@ -28,7 +28,7 @@ To determine code coverage:
 ### Examples
 
 ```javascript
-const Pinboard = require('node-pinboard');
+const Pinboard = require('node-pinboard').default;
 const api_token = 'user:NNNNNN';
 
 const pinboard = new Pinboard(api_token);
